@@ -1,0 +1,27 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  values:
+    global:
+      proxy:
+        autoInject: enabled
+      useMCP: false
+      
+  addonComponents:
+    pilot:
+      enabled: true
+
+  components:
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
+        k8s:
+          service:
+            type: NodePort
+            ports:
+            - name: http
+              nodePort: 32000
+              port: 80
+              targetPort: 8080
+              protocol: TCP
+              
