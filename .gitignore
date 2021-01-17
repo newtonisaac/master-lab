@@ -1,3 +1,6 @@
 .terraform*
 terraform.tfstate*
 .state
+data
+node_modules
+npm-debug.log

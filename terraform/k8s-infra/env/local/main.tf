@@ -38,30 +38,9 @@ resource "docker_container" "dind-kind-container" {
   provisioner "local-exec" {
     command = "sh ./scripts/init_dind-kind.sh ${docker_container.dind-kind-container.id}"
   }
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "docker stop $(docker ps -aq -f name=kind-control-plane) && docker rm $(docker ps -aq -f name=kind-control-plane)"
+  }
 }
-
-      
-# resource "docker_image" "boundary_image" {
-#   name = "boundary_image"
-#   keep_locally = true
-#   build {
-#     path = "./images/boundary/"
-#     tag = ["v1"]
-#   }
-# }
-
-# resource "docker_container" "boundary-container" {
-#   image = docker_image.boundary_image.latest
-#   name  = "boundary-container"
-#   hostname = "boundary"
-#   network_mode = "host"
-#   privileged = true
-# }
-
-
-# resource "null_resource" "boundary-container" {
-#   provisioner "local-exec" {
-#     command = "sh ./scripts/await_boundary.sh"
-#   }
-#   depends_on = [ docker_container.boundary-container, docker_container.dind-kind-container ]
-# }

@@ -17,3 +17,32 @@ Obs.: Do not close the terminal and after lab do "sudo systemctl start docker"
 terraform init
 terraform apply
 ```
+
+3. Enter in kind containel to control k8s
+```
+docker exec -it $(docker ps -aq -f name=dind-kind) bash
+```
+
+4. Hello world
+```
+open http://hello.default.127.0.0.1.nip.io/
+```
+
+Benchmarking
+------------
+
+1. Up data collector 
+```
+cd benchmark
+docker-compose up -d influxdb grafana
+```
+
+2. Run test
+```
+docker-compose run k6 run scripts/ewoks.js
+```
+
+
+```
+python3 -m pip install influxdb
+```
