@@ -1,0 +1,24 @@
+{
+    "name": "benckmark-scripts",
+    "version": "1.0.0",
+    "author": "newton",
+    "scripts": {
+      "bp:node": "sh ./programs/build_push.sh node",
+      "bp:python": "sh ./programs/build_push.sh python",
+      "bp:go": "sh ./programs/build_push.sh go",
+      "bp:php": "sh ./programs/build_push.sh php",
+      "bp:java": "sh ./programs/build_push.sh java",
+      "bp:csharp": "sh ./programs/build_push.sh csharp",
+
+
+      "r:node": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:node",
+      "r:python": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:python",
+      "r:go": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:go",
+      "r:php": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:php",
+      "r:java": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:java",
+      "r:csharp": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:csharp"
+
+    },
+    "dependencies": { }
+  }
+  

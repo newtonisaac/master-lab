@@ -31,6 +31,33 @@ open http://hello.default.127.0.0.1.nip.io/
 Benchmarking
 ------------
 
+For build images and push to docker.hub
+
+
+
+```
+docker login # username: engisaacnewton - password: ...
+
+cd benchmark
+
+npm run bp:csharp
+npm run bp:go
+npm run bp:java
+npm run bp:node
+npm run bp:php
+npm run bp:python
+
+# run to test 
+npm run r:csharp
+npm run r:go
+npm run r:java
+npm run r:node
+npm run r:php
+npm run r:python
+
+```
+
+
 1. Up data collector 
 ```
 cd benchmark

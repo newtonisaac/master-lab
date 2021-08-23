@@ -17,13 +17,21 @@ const fibonacci = (num) => {
 // App
 const app = express();
 
-app.get('/:number', (req, res) => {
+app.get('/', (req, res) => {
+  res.send("Hello World Node!");
+});
+
+app.get('/fibonacci/:number', (req, res) => {
   
   const start = performance.now()
     const result = fibonacci(req.params.number);
   const end = performance.now()
 
   res.send({ result:result, time: end - start });
+});
+
+app.post('/payload', (req, res) => {
+  res.send(req.body);
 });
 
 app.listen(PORT, HOST);
