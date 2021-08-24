@@ -3,12 +3,17 @@
     "version": "1.0.0",
     "author": "newton",
     "scripts": {
-      "bp:node": "sh ./programs/build_push.sh node",
-      "bp:python": "sh ./programs/build_push.sh python",
-      "bp:go": "sh ./programs/build_push.sh go",
-      "bp:php": "sh ./programs/build_push.sh php",
-      "bp:java": "sh ./programs/build_push.sh java",
-      "bp:csharp": "sh ./programs/build_push.sh csharp",
+      "up:jupyter": "docker-compose up -d jupyter",
+      "up:db": "docker-compose up -d influxdb",
+      "up:simulator": "docker-compose up -d jupyter influxdb",
+      "up:grafana": "docker-compose up -d grafana",
+
+      "bp:node": "sh ./docker_images/build_push.sh node",
+      "bp:python": "sh ./docker_images/build_push.sh python",
+      "bp:go": "sh ./docker_images/build_push.sh go",
+      "bp:php": "sh ./docker_images/build_push.sh php",
+      "bp:java": "sh ./docker_images/build_push.sh java",
+      "bp:csharp": "sh ./docker_images/build_push.sh csharp",
 
 
       "r:node": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:node",

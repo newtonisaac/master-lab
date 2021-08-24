@@ -1,0 +1,75 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: node
+spec:
+  template:
+    spec:
+      containers:
+        - image: engisaacnewton/servelessbench:node
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "Knative"
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: python
+spec:
+  template:
+    spec:
+      containers:
+        - image: engisaacnewton/servelessbench:python
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "Knative"
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: php
+spec:
+  template:
+    spec:
+      containers:
+        - image: engisaacnewton/servelessbench:php
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "Knative"
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: java
+spec:
+  template:
+    spec:
+      containers:
+        - image: engisaacnewton/servelessbench:java
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "Knative"
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: go
+spec:
+  template:
+    spec:
+      containers:
+        - image: engisaacnewton/servelessbench:go
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "Knative"
+              

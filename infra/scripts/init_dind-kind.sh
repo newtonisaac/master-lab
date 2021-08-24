@@ -27,13 +27,18 @@ dexec "kubectl patch configmap -n knative-serving config-domain -p '{\"data\": {
 
 # ------  Install Hello World Container ------------------------------------------------------------------------------------
 
-sleep 20s  # waiting componets init 
+sleep 30s  # waiting componets init 
 
 # enable istio sidecar injection for the default namespace and deploy Knative "hello world" service in it
 dexec "kubectl label namespace default istio-injection=enabled"
 
+sleep 30s  # waiting componets init 
+
 # Deploy hello world
 dexec "kubectl apply -f /k8s_configs/hello-world-knative.yaml"
+
+# Deploy benckmark containers
+dexec "kubectl apply -f /k8s_configs/benchmark-services-knative.yaml"
 
 sleep 60s
 
