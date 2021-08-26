@@ -6,12 +6,12 @@ export let options = {
     t1: {
       executor: 'constant-vus',
       vus: 1,
-      duration: '20s',
+      duration: '60s',
+      gracefulStop: '0s',
       tags: { 
         type: 't1',
         target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1'
+        simulation: __ENV.SIMULATION
       }
     },
   }

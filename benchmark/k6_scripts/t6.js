@@ -3,98 +3,42 @@ import { check } from "k6";
 
 export let options = {
   scenarios: {
-    t6_128: {
-      executor: 'constant-vus',
-      vus: 1,
-      exec: 'm128',
-      duration: '20s',
+    t6: {
+      executor: 'ramping-vus',
+      gracefulStop: '0s',
+      gracefulRampDown: '0s',
+      startVUs: 0,
+      stages: [
+        { duration: '60s', target: 60 },
+      ],
+      startTime: '0s',
       tags: { 
         type: 't6',
         target: __ENV.TARGET,
         simulation: __ENV.SIMULATION,
-        users: '1',
-        memory: 128
-      }
-    },
-    t6_256: {
-      executor: 'constant-vus',
-      vus: 1,
-      exec: 'm256',
-      duration: '20s',
-      tags: { 
-        type: 't6',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        memory: 256
-      }
-    },
-    t6_512: {
-      executor: 'constant-vus',
-      vus: 1,
-      exec: 'm512',
-      duration: '20s',
-      tags: { 
-        type: 't6',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        memory: 512
-      }
-    },
-    t6_1024: {
-      executor: 'constant-vus',
-      vus: 1,
-      exec: 'm1024',
-      duration: '20s',
-      tags: { 
-        type: 't6',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        memory: 1024
-      }
-    },
-    t6_2048: {
-      executor: 'constant-vus',
-      vus: 1,
-      exec: 'm2048',
-      duration: '20s',
-      tags: { 
-        type: 't6',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        memory: 2048
+        memory: __ENV.MEMORY
       }
     }
   }
 }
 
+const getEndpoint = () => {
+  switch (__ENV.MEMORY) {
+    case '128' || 128:
+      return "m128." + _ENV.LOAD_ENDPOINT 
+    case '256' || 256:
+      return "m256." + _ENV.LOAD_ENDPOINT 
+    case '512' || 512:
+      return "m512." + _ENV.LOAD_ENDPOINT 
+    case '1024' || 1024:
+      return "m1024." + _ENV.LOAD_ENDPOINT 
+    case '2048' || 2048:
+      return "m2048." + _ENV.LOAD_ENDPOINT           
+  }
+}
 
 
-export default function m128() {
-  const response = http.get(__ENV.LOAD_ENDPOINT_128);  
-  check(response, { "success": (r) => r.status === 200 });
-};
-
-export default function m256() {
-  const response = http.get(__ENV.LOAD_ENDPOINT_256);  
-  check(response, { "success": (r) => r.status === 200 });
-};
-
-export default function m512() {
-  const response = http.get(__ENV.LOAD_ENDPOINT_512);  
-  check(response, { "success": (r) => r.status === 200 });
-};
-
-export default function m1024() {
-  const response = http.get(__ENV.LOAD_ENDPOINT_1024);  
-  check(response, { "success": (r) => r.status === 200 });
-};
-
-
-export default function m2048() {
-  const response = http.get(__ENV.LOAD_ENDPOINT_2048);  
+export default function () {
+  const response = http.get(getEndpoint());  
   check(response, { "success": (r) => r.status === 200 });
 };

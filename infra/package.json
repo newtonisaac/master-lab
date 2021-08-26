@@ -3,7 +3,10 @@
     "version": "1.0.0",
     "author": "newton",
     "scripts": {
-      "apply": "terrafortm apply"
+      "apply": "terraform apply",
+      "apply:aa": "terraform apply -auto-approve",
+      "destroy": "terraform destroy",
+      "destroy:aa": "terraform destroy -auto-approve"
     },
     "dependencies": { }
   }

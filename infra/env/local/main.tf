@@ -18,7 +18,7 @@ resource "docker_image" "dind-kind_image" {
   name = "dind-kind"
   keep_locally = true
   build {
-    path = "./images/dind-kind/"
+    path = "./local-k8s/dind-kind/"
     tag = ["v1"]
   }
 }

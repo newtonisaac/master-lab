@@ -11,138 +11,47 @@ const generatePayload = (lenght) => {
 
 const payload32 = generatePayload(32)
 const payload64 = generatePayload(64)
-const payload96 = generatePayload(96)
 const payload128 = generatePayload(128)
-const payload160 = generatePayload(160)
-const payload192 = generatePayload(192)
-const payload224 = generatePayload(224)
 const payload256 = generatePayload(256)
+const payload512 = generatePayload(512)
 
-export let options = {
-  scenarios: {
-    t4_0: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 0
-      },
-      env: { PAYLOAD: '' },
-    },
-    t4_32: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 32
-      },
-      env: { PAYLOAD: payload32 },
-    },
-    t4_64: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 64
-      },
-      env: { PAYLOAD: payload64 },
-    },
-    t4_96: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 96
-      },
-      env: { PAYLOAD: payload96 },
-    },
-    t4_128: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 128
-      },
-      env: { PAYLOAD: payload128 },
-    },
-    t4_160: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 160
-      },
-      env: { PAYLOAD: payload160 },
-    },
-    t4_192: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 192
-      },
-      env: { PAYLOAD: payload192 },
-    },
-    t4_224: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: 224
-      },
-      env: { PAYLOAD: payload224 },
-    },
-    t4_256: {
-      executor: 'constant-vus',
-      vus: 1,
-      duration: '20s',
-      tags: { 
-        type: 't1',
-        target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION,
-        users: '1',
-        payload: payload256
-      },
-      env: { PAYLOAD: payload256 },
-    },
+const getPayload = (payload) => {
+  switch (payload) {
+    case '32' || 32:
+      return payload32
+    case '64' || 32:
+        return payload64
+    case '128' || 128:
+      return payload128
+    case '256' || 256:
+      return payload256
+    case '512' || 512:
+        return payload512
   }
 }
 
-
+export let options = {
+  scenarios: {
+    t4: {
+      executor: 'ramping-vus',
+      gracefulStop: '0s',
+      gracefulRampDown: '0s',
+      startVUs: 0,
+      stages: [
+        { duration: '60s', target: 60 },
+      ],
+      startTime: '0s',
+      tags: {
+        type: 't4',
+        target: __ENV.TARGET,
+        simulation: __ENV.SIMULATION,
+        payload: __ENV.PAYLOAD
+      }
+    }
+  }
+}
 
 export default function () {
-  const response = http.post(__ENV.LOAD_ENDPOINT, payload__ENV.PAYLOAD);  
+  const response = http.post(__ENV.LOAD_ENDPOINT, getPayload(__ENV.PAYLOAD));
   check(response, { "success": (r) => r.status === 200 });
 };

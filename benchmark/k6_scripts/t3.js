@@ -7,6 +7,7 @@ export let options = {
       executor: 'constant-vus',
       vus: 1,
       duration: '20s',
+      gracefulStop: '0s',
       tags: { 
         type: 't3',
         target: __ENV.TARGET,
@@ -19,6 +20,8 @@ export let options = {
       executor: 'constant-vus',
       vus: 1,
       exec: 't3',
+      startTime: '20s',
+      gracefulStop: '0s',
       tags: { 
         type: 't3',
         target: __ENV.TARGET,

@@ -31,7 +31,7 @@ app.get('/fibonacci/:number', (req, res) => {
 });
 
 app.post('/payload', (req, res) => {
-  res.send(req.body);
+  res.status(200).send();
 });
 
 app.listen(PORT, HOST);

@@ -8,6 +8,6 @@ set -euxo pipefail
 
 tag="docker.io/engisaacnewton/servelessbench:${1}"
 
-docker build --tag=$tag ./programs/${1}
+docker build --tag=$tag ./docker_images/${1}
 
 docker push $tag

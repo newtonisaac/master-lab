@@ -5,6 +5,7 @@
     "scripts": {
       "up:jupyter": "docker-compose up -d jupyter",
       "up:db": "docker-compose up -d influxdb",
+      "clear:db": "im_id=$(docker ps -aq -f name=influxdb) && docker stop $im_id && docker rm $im_id && sudo rm -R ./data/influxdb",
       "up:simulator": "docker-compose up -d jupyter influxdb",
       "up:grafana": "docker-compose up -d grafana",
 
