@@ -23,12 +23,12 @@ EXPOSE 2222
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.11/bin/linux/amd64/kubectl
 RUN chmod +x ./kubectl &&  mv ./kubectl /usr/local/bin/kubectl
 
-RUN curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-$(uname)-amd64
+RUN curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-$(uname)-amd64
 RUN chmod +x ./kind && mv ./kind /usr/local/bin/kind
 
 RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-RUN curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.8.1 TARGET_ARCH=x86_64 sh - 
+RUN curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.9.5 TARGET_ARCH=x86_64 sh - 
 
 COPY ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh

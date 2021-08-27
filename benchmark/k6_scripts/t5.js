@@ -23,6 +23,6 @@ export let options = {
 }
 
 export default function () {
-  const response = http.get(_ENV.LOAD_ENDPOINT);  
+  const response = http.get(__ENV.LOAD_ENDPOINT);  
   check(response, { "success": (r) => r.status === 200 });
 };
