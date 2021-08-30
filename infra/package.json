@@ -6,7 +6,10 @@
       "apply": "terraform apply",
       "apply:aa": "terraform apply -auto-approve",
       "destroy": "terraform destroy",
-      "destroy:aa": "terraform destroy -auto-approve"
+      "destroy:aa": "terraform destroy -auto-approve",
+
+      "config_knative": "sh ./env/gcp/scripts/config_knative.sh master-324309 europe-north1 k8s-master-cluster-knative europe-north1-c",
+      "deploy_bench_images": "sh ./env/gcp/scripts/deploy_bench_images.sh"
     },
     "dependencies": { }
   }

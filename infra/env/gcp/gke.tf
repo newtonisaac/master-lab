@@ -31,3 +31,16 @@ resource "google_container_node_pool" "master_node_pool" {
   }
 
 }
+
+resource "null_resource" "config_knative" {
+    provisioner "local-exec" {
+        command = "sh ${path.module}/scripts/config_knative.sh ${local.project} ${local.region} ${google_container_cluster.k8s_cluster_master_knative.name} ${local.zone}" 
+    }
+}
+
+resource "null_resource" "deploy_bench_images" {
+    provisioner "local-exec" {
+        command = "sh ${path.module}/scripts/deploy_bench_images.sh" 
+    }
+}
+

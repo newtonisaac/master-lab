@@ -10,7 +10,7 @@ terraform {
 provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
-
+/* 
 resource "docker_image" "dind-kind_image" {
   name = "dind-kind"
   keep_locally = true
@@ -40,4 +40,4 @@ resource "docker_container" "dind-kind-container" {
     when    = destroy
     command = "docker stop $(docker ps -aq -f name=kind-control-plane) && docker rm $(docker ps -aq -f name=kind-control-plane)"
   }
-}
+} */

@@ -8,7 +8,3 @@ module "local" {
 module "gcp" {
   source = "./env/gcp"
 }
-
-output "result" {
-  value = module.gcp.result
-}
