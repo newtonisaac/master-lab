@@ -4,3 +4,4 @@ terraform.tfstate*
 data
 node_modules
 npm-debug.log
+.vscode

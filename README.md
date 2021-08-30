@@ -5,25 +5,18 @@ Requirements
 -	[Docker](https://docs.docker.com/engine/install/)
 -	[Terraform](https://www.terraform.io/downloads.html) v0.14.3
 
-1. Configuring a docker daemon tcp connection to enable terraform provider 
-```
-sudo systemctl stop docker
-sudo dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock
-```
-Obs.: Do not close the terminal and after lab do "sudo systemctl start docker"
-
-2. Run terraform init and apply 
+1. Run terraform init and apply 
 ```
 terraform init
 terraform apply
 ```
 
-3. Enter in kind containel to control k8s
+2. Enter in kind containel to control k8s
 ```
 docker exec -it $(docker ps -aq -f name=dind-kind) bash
 ```
 
-4. Hello world
+3. Hello world
 ```
 open http://hello.default.127.0.0.1.nip.io/
 ```
@@ -31,29 +24,36 @@ open http://hello.default.127.0.0.1.nip.io/
 Benchmarking
 ------------
 
-For build images and push to docker.hub
-
-
+For build images and push to docker.hub/gcp/aws
 
 ```
 docker login # username: engisaacnewton - password: ...
 
 cd benchmark
 
-npm run bp:csharp
-npm run bp:go
-npm run bp:java
-npm run bp:node
-npm run bp:php
-npm run bp:python
+yarn bp:csharp
+yarn bp:go
+yarn bp:java
+yarn bp:node
+yarn bp:php
+yarn bp:python
 
 # run to test 
-npm run r:csharp
-npm run r:go
-npm run r:java
-npm run r:node
-npm run r:php
-npm run r:python
+yarn r:csharp
+yarn r:go
+yarn r:java
+yarn r:node
+yarn r:php
+yarn r:python
+
+# push to google
+yarn bp:csharp:gcp
+yarn bp:go:gcp
+yarn bp:java:gcp
+yarn bp:node:gcp
+yarn bp:php:gcp
+yarn bp:python:gcp
+
 
 ```
 
@@ -72,4 +72,16 @@ docker-compose run k6 run scripts/ewoks.js
 
 ```
 python3 -m pip install influxdb
+```
+
+
+
+GCP
+------------
+
+1. Config
+
+```
+gcloud auth login
+gcloud config set project PROJECT_ID
 ```

@@ -1,17 +1,14 @@
 terraform {
   required_providers {
     docker = {
-      source = "kreuzwerker/docker"
-      version = "2.9.0"
+      source  = "kreuzwerker/docker"
+      version = "2.15.0"
     }
-  }
-  backend "local" {
-    path = ".state/terraform.tfstate"
   }
 }
 
 provider "docker" {
-  host = "tcp://localhost:2376"
+  host = "unix:///var/run/docker.sock"
 }
 
 resource "docker_image" "dind-kind_image" {

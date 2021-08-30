@@ -12,7 +12,7 @@ dexec "kubectl cluster-info --context kind-kind"
 
 echo Configuring knative...
 
-sleep 60s  # waiting k6s init 
+sleep 90s  # waiting k6s init 
 
 # install knative
 dexec "kubectl apply -f https://github.com/knative/serving/releases/download/$knative_version/serving-crds.yaml"

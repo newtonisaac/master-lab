@@ -3,12 +3,15 @@
     "version": "1.0.0",
     "author": "newton",
     "scripts": {
-      "up:jupyter": "docker-compose up -d jupyter",
-      "up:db": "docker-compose up -d influxdb",
-      "clear:db": "im_id=$(docker ps -aq -f name=influxdb) && docker stop $im_id && docker rm $im_id && sudo rm -R ./data/influxdb",
-      "up:simulator": "docker-compose up -d jupyter influxdb",
+      "up:jupyter": "docker-compose up -d jupyter_dev",
+      "up:db": "docker-compose up -d influxdb_dev",
+      "clear:db": "im_id=$(docker ps -aq -f name=influxdb_dev) && docker stop $im_id && docker rm $im_id && sudo rm -R ./data/influxdb",
+      "up:simulator": "docker-compose up -d jupyter_dev influxdb_dev",
       "up:grafana": "docker-compose up -d grafana",
 
+      "build:jupyter": "docker build --tag=engisaacnewton/jupyter_benchmark:latest ./jupyter",
+      "push:jupyter": "docker push engisaacnewton/jupyter_benchmark:latest",
+      
       "bp:node": "sh ./docker_images/build_push.sh node",
       "bp:python": "sh ./docker_images/build_push.sh python",
       "bp:go": "sh ./docker_images/build_push.sh go",
@@ -16,13 +19,30 @@
       "bp:java": "sh ./docker_images/build_push.sh java",
       "bp:csharp": "sh ./docker_images/build_push.sh csharp",
 
+      "bp:node:gcp": "sh ./docker_images/build_push_gcp.sh node",
+      "bp:python:gcp": "sh ./docker_images/build_push_gcp.sh python",
+      "bp:go:gcp": "sh ./docker_images/build_push_gcp.sh go",
+      "bp:php:gcp": "sh ./docker_images/build_push_gcp.sh php",
+      "bp:java:gcp": "sh ./docker_images/build_push_gcp.sh java",
+      "bp:csharp:gcp": "sh ./docker_images/build_push_gcp.sh csharp",
+
 
       "r:node": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:node",
       "r:python": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:python",
       "r:go": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:go",
       "r:php": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:php",
       "r:java": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:java",
-      "r:csharp": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:csharp"
+      "r:csharp": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:csharp",
+
+      "bm:build": "docker build --tag=engisaacnewton/bench_machine:latest ./",
+      "bm:build:gcp": "docker build --tag=eu.gcr.io/master-324309/bench_machine:latest ./",
+      
+      "bm:push": "docker push engisaacnewton/bench_machine:latest",
+      "bm:push:gcp": "docker push eu.gcr.io/master-324309/bench_machine:latest",
+
+      "bm:run": "docker run --rm --name bench_machine -v /var/run/docker.sock:/var/run/docker.sock engisaacnewton/bench_machine:latest", 
+      "bm:bash": "docker exec -it $(docker ps -aq -f name=bench_machine) bash",
+      "bm:stop": "docker stop $(docker ps -aq -f name=bench_machine)"
 
     },
     "dependencies": { }
