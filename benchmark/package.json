@@ -26,6 +26,12 @@
       "bp:java:gcp": "sh ./docker_images/build_push_gcp.sh java",
       "bp:csharp:gcp": "sh ./docker_images/build_push_gcp.sh csharp",
 
+      "bp:node:aws": "sh ./docker_images/build_push_aws.sh node",
+      "bp:python:aws": "sh ./docker_images/build_push_aws.sh python",
+      "bp:go:aws": "sh ./docker_images/build_push_aws.sh go",
+      "bp:php:aws": "sh ./docker_images/build_push_aws.sh php",
+      "bp:java:aws": "sh ./docker_images/build_push_aws.sh java",
+      "bp:csharp:aws": "sh ./docker_images/build_push_aws.sh csharp",
 
       "r:node": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:node",
       "r:python": "docker run --rm -p 8080:8080 engisaacnewton/servelessbench:python",

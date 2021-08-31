@@ -8,3 +8,7 @@ module "local" {
 module "gcp" {
   source = "./env/gcp"
 }
+
+module "aws" {
+  source = "./env/aws"
+}

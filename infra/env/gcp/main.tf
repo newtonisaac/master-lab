@@ -130,7 +130,7 @@ resource "google_compute_instance" "benchmark_machine" {
     google-logging-enabled = "false"
   }
 
-  desired_status = "RUNNING"  # "TERMINATED" or "RUNNING"
+  desired_status = "TERMINATED"  # "TERMINATED" or "RUNNING"
 
   network_interface {
     #network = google_compute_network.vpc_network.self_link
