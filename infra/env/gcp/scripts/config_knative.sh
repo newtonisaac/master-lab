@@ -18,6 +18,7 @@ path="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 # install knative
 kubectl apply -f $path/knative/serving-crds.yaml 
 kubectl apply -f $path/knative/serving-core.yaml 
+kubectl apply -f $path/knative/serving-hpa.yaml 
 kubectl apply -f $path/knative/kourier.yaml 
 kubectl patch configmap/config-network --namespace knative-serving --type merge --patch "{\"data\":{\"ingress.class\":\"kourier.ingress.networking.knative.dev\"}}" 
 

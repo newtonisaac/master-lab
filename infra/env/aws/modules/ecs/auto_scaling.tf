@@ -59,7 +59,7 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_high" {
   namespace           = "AWS/ECS"
   period              = "60"
   statistic           = "Average"
-  threshold           = "85"
+  threshold           = "60"
 
   dimensions = {
     ClusterName = var.cluster_name

@@ -12,7 +12,13 @@ metadata:
   name: node
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "cpu"
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/target: "60"
     spec:
+      containerConcurrency: 80
       containers:
         - image: engisaacnewton/servelessbench:node
           ports:
@@ -27,6 +33,11 @@ metadata:
   name: python
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "cpu"
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/target: "60"
     spec:
       containers:
         - image: engisaacnewton/servelessbench:python
@@ -42,6 +53,11 @@ metadata:
   name: php
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "cpu"
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/target: "60"
     spec:
       containers:
         - image: engisaacnewton/servelessbench:php
@@ -57,6 +73,11 @@ metadata:
   name: java
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "cpu"
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/target: "60"
     spec:
       containers:
         - image: engisaacnewton/servelessbench:java
@@ -72,6 +93,11 @@ metadata:
   name: go
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "cpu"
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/target: "60"
     spec:
       containers:
         - image: engisaacnewton/servelessbench:go
@@ -87,6 +113,11 @@ metadata:
   name: csharp
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/metric: "cpu"
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/target: "60"
     spec:
       containers:
         - image: engisaacnewton/servelessbench:csharp
