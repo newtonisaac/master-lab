@@ -9,18 +9,20 @@ export let options = {
       gracefulRampDown: '0s',
       startVUs: 0,
       stages: [
-        { duration: '60s', target: 60 },
+        { duration: '1m', target: 60 },
+        { duration: '1m', target: 120 },
+        { duration: '1m', target: 240 },
+        { duration: '1m', target: 120 },
+        { duration: '1m', target: 60 }
       ],
       tags: { 
-        type: 't2',
+        type: 't3',
         target: __ENV.TARGET,
         simulation: __ENV.SIMULATION
       },
     }
   }
 }
-
-var current_vus = 0
 
 export default function () {
    const response = http.get(__ENV.LOAD_ENDPOINT);  

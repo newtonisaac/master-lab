@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  dev_influxdb:
+  influxdb_dev:
     image: influxdb:1.8
     container_name: influxdb_dev 
     environment:
@@ -13,7 +13,7 @@ services:
     volumes:
       - ./data/influxdb:/var/lib/influxdb
 
-  dev_jupyter:
+  jupyter_dev:
     build: ./jupyter
     container_name: jupyter_dev
     volumes:
@@ -46,6 +46,7 @@ services:
     environment:
      - JUPYTER_TOKEN=admin
      - GRANT_SUDO=yes
+     - PASSWORD=admin
   
   grafana:
     image: grafana/grafana:latest

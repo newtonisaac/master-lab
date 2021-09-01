@@ -74,7 +74,7 @@ resource "google_compute_firewall" "k8s-vpc_firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "32000"]
+    ports    = ["80", "32000", "8080"]
   }
 
   target_tags = ["k8s-node"]
@@ -130,7 +130,7 @@ resource "google_compute_instance" "benchmark_machine" {
     google-logging-enabled = "false"
   }
 
-  desired_status = "TERMINATED"  # "TERMINATED" or "RUNNING"
+  desired_status = "RUNNING"  # "TERMINATED" or "RUNNING"
 
   network_interface {
     #network = google_compute_network.vpc_network.self_link

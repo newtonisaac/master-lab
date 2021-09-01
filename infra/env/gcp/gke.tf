@@ -25,12 +25,12 @@ resource "google_container_node_pool" "master_node_pool" {
 
   node_config {
     preemptible  = false
-    machine_type = "e2-medium" # 2 cpu, 4G RAM 
+    machine_type = "e2-standard-4" # e2-medium -> 2 cpu, 4G RAM || e2-standard-4 -> 4 cpu, 16G RAM 
 
     tags = [ "k8s-node" ]
   }
 
-}
+} 
 
 resource "null_resource" "config_knative" {
     provisioner "local-exec" {

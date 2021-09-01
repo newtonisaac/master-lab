@@ -23,107 +23,209 @@ spec:
         - image: engisaacnewton/servelessbench:node
           ports:
             - containerPort: 8080
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 1000m
+              memory: 512Mi
           env:
             - name: TARGET
               value: "Knative"
----
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: python
-spec:
-  template:
-    metadata:
-      annotations:
-        autoscaling.knative.dev/metric: "cpu"
-        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
-        autoscaling.knative.dev/target: "60"
-    spec:
-      containers:
-        - image: engisaacnewton/servelessbench:python
-          ports:
-            - containerPort: 8080
-          env:
-            - name: TARGET
-              value: "Knative"
----
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: php
-spec:
-  template:
-    metadata:
-      annotations:
-        autoscaling.knative.dev/metric: "cpu"
-        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
-        autoscaling.knative.dev/target: "60"
-    spec:
-      containers:
-        - image: engisaacnewton/servelessbench:php
-          ports:
-            - containerPort: 8080
-          env:
-            - name: TARGET
-              value: "Knative"
----
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: java
-spec:
-  template:
-    metadata:
-      annotations:
-        autoscaling.knative.dev/metric: "cpu"
-        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
-        autoscaling.knative.dev/target: "60"
-    spec:
-      containers:
-        - image: engisaacnewton/servelessbench:java
-          ports:
-            - containerPort: 8080
-          env:
-            - name: TARGET
-              value: "Knative"
----
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: go
-spec:
-  template:
-    metadata:
-      annotations:
-        autoscaling.knative.dev/metric: "cpu"
-        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
-        autoscaling.knative.dev/target: "60"
-    spec:
-      containers:
-        - image: engisaacnewton/servelessbench:go
-          ports:
-            - containerPort: 8080
-          env:
-            - name: TARGET
-              value: "Knative"
----
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: csharp
-spec:
-  template:
-    metadata:
-      annotations:
-        autoscaling.knative.dev/metric: "cpu"
-        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
-        autoscaling.knative.dev/target: "60"
-    spec:
-      containers:
-        - image: engisaacnewton/servelessbench:csharp
-          ports:
-            - containerPort: 8080
-          env:
-            - name: TARGET
-              value: "Knative"
-              
+# ---
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: node1g
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/metric: "cpu"
+#         autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+#         autoscaling.knative.dev/target: "60"
+#     spec:
+#       containerConcurrency: 80
+#       containers:
+#         - image: engisaacnewton/servelessbench:node
+#           ports:
+#             - containerPort: 8080
+#           resources:
+#             limits:
+#               cpu: 2000m
+#               memory: 1024Mi
+#             requests:
+#               cpu: 2000m
+#               memory: 1024Mi
+#           env:
+#             - name: TARGET
+#               value: "Knative"
+# ---
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: node2g
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/metric: "cpu"
+#         autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+#         autoscaling.knative.dev/target: "60"
+#     spec:
+#       containerConcurrency: 80
+#       containers:
+#         - image: engisaacnewton/servelessbench:node
+#           ports:
+#             - containerPort: 8080
+#           resources:
+#             limits:
+#               cpu: 4000m
+#               memory: 2048Mi
+#             requests:
+#               cpu: 4000m
+#               memory: 2048Mi
+#           env:
+#             - name: TARGET
+#               value: "Knative"
+# ---
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: python
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/metric: "cpu"
+#         autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+#         autoscaling.knative.dev/target: "60"
+#     spec:
+#       containerConcurrency: 80
+#       containers:
+#         - image: engisaacnewton/servelessbench:python
+#           ports:
+#             - containerPort: 8080
+#           resources:
+#             limits:
+#               cpu: 1000m
+#               memory: 512Mi
+#             requests:
+#               cpu: 1000m
+#               memory: 512Mi
+#           env:
+#             - name: TARGET
+#               value: "Knative"
+# ---
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: php
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/metric: "cpu"
+#         autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+#         autoscaling.knative.dev/target: "60"
+#     spec:
+#       containerConcurrency: 80
+#       containers:
+#         - image: engisaacnewton/servelessbench:php
+#           ports:
+#             - containerPort: 8080
+#           resources:
+#             limits:
+#               cpu: 1000m
+#               memory: 512Mi
+#             requests:
+#               cpu: 1000m
+#               memory: 512Mi
+#           env:
+#             - name: TARGET
+#               value: "Knative"
+# ---
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: go
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/metric: "cpu"
+#         autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+#         autoscaling.knative.dev/target: "60"
+#     spec:
+#       containerConcurrency: 80
+#       containers:
+#         - image: engisaacnewton/servelessbench:go
+#           ports:
+#             - containerPort: 8080
+#           resources:
+#             limits:
+#               cpu: 1000m
+#               memory: 512Mi
+#             requests:
+#               cpu: 1000m
+#               memory: 512Mi
+#           env:
+#             - name: TARGET
+#               value: "Knative"
+# ---
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: java
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/metric: "cpu"
+#         autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+#         autoscaling.knative.dev/target: "60"
+#     spec:
+#       containerConcurrency: 80
+#       containers:
+#         - image: engisaacnewton/servelessbench:java
+#           ports:
+#             - containerPort: 8080
+#           resources:
+#             limits:
+#               cpu: 1000m
+#               memory: 512Mi
+#             requests:
+#               cpu: 1000m
+#               memory: 512Mi
+#           env:
+#             - name: TARGET
+#               value: "Knative"
+# ---
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: csharp
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/metric: "cpu"
+#         autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+#         autoscaling.knative.dev/target: "60"
+#     spec:
+#       containerConcurrency: 80
+#       containers:
+#         - image: engisaacnewton/servelessbench:csharp
+#           ports:
+#             - containerPort: 8080
+#           resources:
+#             limits:
+#               cpu: 1000m
+#               memory: 512Mi
+#             requests:
+#               cpu: 1000m
+#               memory: 512Mi
+#           env:
+#             - name: TARGET
+#               value: "Knative"

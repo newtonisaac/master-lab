@@ -4,8 +4,6 @@ echo Configuring knative...
 
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-cat $SCRIPTPATH/../kubeconfig
-
 project=$1
 region=$2
 cluster_name=$3
@@ -27,7 +25,7 @@ internal_node_ip=$(kubectl get nodes -o=json | jq -r ".items[] | select(.spec.pr
 # config ingress dns to nip.io
 
 echo Internal node ip of zone $zone = $internal_node_ip
-kubectl patch configmap -n knative-serving config-domain -p "{\"data\": {\"$internal_node_ip.nip.io\": \"\" }}" 
+kubectl patch configmap -n knative-serving config-domain --type merge --patch "{\"data\": {\"$internal_node_ip.nip.io\": \"\" }}" 
 
 kubectl --namespace kourier-system get service kourier 
 kubectl get pods -n knative-serving 
