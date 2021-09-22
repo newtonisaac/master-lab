@@ -9,17 +9,14 @@ export let options = {
       gracefulRampDown: '0s',
       startVUs: 0,
       stages: [
-        { duration: '1m', target: 60 },
-        { duration: '1m', target: 120 },
-        { duration: '1m', target: 240 },
-        { duration: '1m', target: 120 },
-        { duration: '1m', target: 60 }
+        { duration: '60s', target: 60 },
       ],
-      tags: { 
-        type: 't3',
+      startTime: '0s',
+      tags: {
+        type: 't2',
         target: __ENV.TARGET,
-        simulation: __ENV.SIMULATION
-      },
+        simulation: __ENV.SIMULATION,
+      }
     }
   }
 }
